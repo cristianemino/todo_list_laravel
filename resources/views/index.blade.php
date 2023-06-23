@@ -24,6 +24,8 @@
                     <td>{{$note->referencia}}</td>
                     <td>
                         <a href="{{ route('edit', $note->id) }}">Editar</a>
+                        <a href="{{ route('delete', $note->id) }}">Borrar</a>
+                        <a href="{{ route('show', $note->id) }}">Ver</a>
                     </td>
                 </tr>
             @endforeach

@@ -44,6 +44,9 @@ class NotesController extends Controller
         $note->nombre = $request->nombre;
         $note->referencia = $request->referencia;
         $note->descripcion = $request->descripcion;
+        $note->save();
+
+        return redirect()->route('index');
     }
 
     /**
@@ -52,9 +55,14 @@ class NotesController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function show(Note $note)
+    public function show($id)
     {
-        return "show";
+        $note = Note::find($id);
+        $data = [
+            'note' => $note,
+        ];
+        
+        return view('show', $data);
     }
 
     public function edit($id)
@@ -92,8 +100,11 @@ class NotesController extends Controller
      * @param  \App\Models\Note  $note
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Note $note)
+    public function destroy($id)
     {
-        return "destroy";
+        $note = Note::find($id);
+        $note->delete();
+
+        return redirect()->route('index');
     }
 }
